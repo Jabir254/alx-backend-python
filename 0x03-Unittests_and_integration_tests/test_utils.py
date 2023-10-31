@@ -29,6 +29,7 @@ class TestAccessNestedMap(unittest.TestCase):
         ) as context:
             access_nested_map(nested_map, path)
 
+
 class TestGetJson(unittest.TestCase):
     """Tests the `get_json` function."""
     @parameterized.expand([
@@ -39,7 +40,7 @@ class TestGetJson(unittest.TestCase):
             self,
             test_url: str,
             test_payload: Dict,
-            ) -> None:
+    ) -> None:
         """Tests `get_json`'s output."""
         attrs = {'json.return_value': test_payload}
         with patch("requests.get", return_value=Mock(**attrs)) as req_get:
@@ -49,6 +50,7 @@ class TestGetJson(unittest.TestCase):
 
 class TestMemoize(unittest.TestCase):
     """Tests the `memoize` function."""
+
     def test_memoize(self) -> None:
         """Tests `memoize`'s output."""
         class TestClass:
@@ -62,7 +64,7 @@ class TestMemoize(unittest.TestCase):
                 TestClass,
                 "a_method",
                 return_value=lambda: 42,
-                ) as memo_fxn:
+        ) as memo_fxn:
             test_class = TestClass()
             self.assertEqual(test_class.a_property(), 42)
             self.assertEqual(test_class.a_property(), 42)
